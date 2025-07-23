@@ -136,7 +136,7 @@ Fabric에서 데이터 작업을 시작하기 전에 Fabric 용량이 활성화�
     display(df)
     ```
 
-10. 셀을 실행하고 출력을 검토합니다.
+10. 셀을 실행하고 출력을 검토합니다.(StructType은 pyspark.sql.types 모듈에 정의된 클래스(Class))
 
     ![스키마가 정의된 코드와 데이터 화면 사진](Images/define-schema.png)
 
@@ -211,6 +211,10 @@ DataFrame 객체는 데이터를 필터링, 그룹화 및 조작하는 기능과
     **코드 설명**: `where(df['Item']=='Road-250 Red, 52')`는 `Item` 열의 값이 'Road-250 Red, 52'인 행만 필터링하는 조건입니다. 여러 함수를 "연결(chaining)"하여 한 함수의 출력이 다음 함수의 입력이 되도록 할 수 있습니다.
 
 5.  수정된 코드를 실행하여 'Road-250 Red, 52' 제품을 구매한 고객만 선택합니다.
+6.  Item 컬럼도 추가해봅니다.
+    ```
+    customers = df.select('CustomerName', 'Email','Item').where(df['Item']=='Road-250 Red, 52')
+    ```
 
 ### DataFrame에서 데이터 집계 및 그룹화하기
 
