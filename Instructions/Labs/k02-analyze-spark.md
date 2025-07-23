@@ -56,17 +56,15 @@ Fabric에서 데이터 작업을 시작하기 전에 Fabric 용량이 활성화�
     ![새로운 노트북 스크린샷](./Images/new-notebook.png)
 
 2.  Fabric은 생성하는 각 Notebook에 Notebook 1, Notebook 2 등과 같은 이름을 할당합니다. 메뉴의 **Home** 탭 위에 있는 이름 패널을 클릭하여 더 설명적인 이름으로 변경합니다.
-3.  첫 번째 셀(현재 코드 셀)을 선택한 다음, 오른쪽 상단 도구 모음에서 **M↓** 버튼을 사용하여 Markdown 셀로 변환합니다. 그러면 셀에 포함된 텍스트가 서식이 지정된 텍스트로 표시됩니다.
-4.  🖉 (Edit) 버튼을 사용하여 셀을 편집 모드로 전환한 다음, 아래와 같이 Markdown을 수정합니다.
+3.  첫 번째 셀(현재 코드 셀)을 선택한 다음, 오른쪽 상단 도구 모음에서 **M↓** 버튼을 사용하여 Markdown 셀로 변환합니다. 그러면 셀에 포함된 텍스트가 서식이 지정된 텍스트로 표시됩니다. 다음과 깉이 되도록 입력합니다. 
 
-    ```markdown
-   # Sales order data exploration
-   Use this notebook to explore sales order data
-    ```
 
-    ![Markdown 셀이 있는 Fabric 노트북 스크린샷](Images/name-notebook-markdown.png)
+
+    ![Screen picture of a Fabric notebook with a markdown cell.](Images/name-notebook-markdown.png)
 
 편집이 끝나면 셀 외부의 Notebook 영역 아무 곳이나 클릭하여 편집을 마칩니다.
+
+
 
 ## DataFrame 만들기
 
