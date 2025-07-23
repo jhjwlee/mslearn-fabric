@@ -122,8 +122,13 @@ Fabric에서 데이터 작업을 시작하기 전에 Fabric 평가판이 활성�
 
    ![데이터 흐름에 의해 로드된 테이블](./Images/loaded-table.png)
 
-
-
+## 다른 조회 방법
+1. 현재 보고 계신 Lakehouse (lh05) 화면에서 오른쪽 상단을 확인합니다. 'Lakehouse'라고 표시된 드롭다운 메뉴가 보일 것입니다.
+2. 이 드롭다운 메뉴를 클릭하고 SQL analytics endpoint를 선택합니다.
+3. 화면이 잠시 후 전환되면서, 마치 SQL Server Management Studio(SSMS)나 Azure Data Studio와 유사한 SQL 중심의 인터페이스로 바뀝니다. 왼쪽에는 orders 테이블이 그대로 보입니다.
+4. 상단 메뉴에서 New SQL query 버튼을 클릭하여 새 쿼리 창을 엽니다.
+5. T-SQL 구문으로 쿼리를 작성합니다.
+   
 ## 리소스 정리
 
 Microsoft Fabric에서 데이터 흐름 탐색을 마쳤다면 이 실습을 위해 만든 Workspace를 삭제할 수 있습니다.
