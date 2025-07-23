@@ -161,6 +161,31 @@ Fabric에서 데이터 작업을 시작하기 전에 Fabric 평가판이 활성�
 
 이 실습에서는 파이프라인을 사용하여 외부 소스에서 레이크하우스로 데이터를 복사한 다음, Spark 노트북을 사용하여 데이터를 변환하고 테이블에 로드하는 데이터 수집 솔루션을 구현했습니다.
 
+## 추가실습
+6.  **Notebook** 활동을 선택하고 다음과 같이 속성을 설정합니다.
+    - **General**:
+        - **Name**: `Load Sales notebook`
+    - **Settings**:
+        - **Notebook**: Load Sales
+        - **Base parameters**: 다음 속성을 가진 새 매개변수 추가:
+            
+            | Name | Type | Value |
+            | -- | -- | -- |
+            | table_name | String | ****** |
+
+File path 입력란 아래의 **'Add dynamic content'**를 클릭합니다.
+표현식 작성기에 다음과 같이 입력합니다.
+```
+    @concat('daily_sales', formatDateTime(utcNow(), 'yyyy_MM_dd'))
+```
+7.  **Home** 탭에서 **&#128427;** (*Save*) 아이콘을 사용하여 파이프라인을 저장합니다. 그런 다음 **&#9655; Run** 버튼을 사용하여 파이프라인을 실행하고 모든 활동이 완료될 때까지 기다립니다.
+
+    ![데이터 흐름 활동이 포함된 파이프라인 스크린샷](./Images/pipeline-run.png)
+
+8.  레이크하우스로 이동하여 **Explorer** 창에서 **Tables**를 확장하고, 파이프라인에 의해 실행된 노트북이 생성한 테이블 (테이블 명에 날짜가 포함되어 있는지?) 을 선택하여 데이터 미리보기를 확인합니다.
+
+
+          
 ## 리소스 정리
 
 이 실습에서는 Microsoft Fabric에서 파이프라인을 구현하는 방법을 배웠습니다.
