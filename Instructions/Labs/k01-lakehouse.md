@@ -86,6 +86,7 @@ Fabric은 외부 소스에서 데이터를 복사하는 파이프라인과 Power
 
     **개념 설명**: Delta 테이블의 파일은 고효율 압축 형식인 *Parquet* 형식으로 저장됩니다. 또한, 테이블에 적용된 모든 트랜잭션(삽입, 업데이트, 삭제 등)의 세부 정보가 기록되는 **_delta_log**라는 하위 폴더가 포함됩니다. 이 로그 덕분에 데이터 버전 관리(Time Travel)와 ACID 트랜잭션이 가능해집니다.
 
+
 ## SQL을 사용하여 테이블 쿼리하기
 
 Lakehouse를 만들고 그 안에 테이블을 정의하면, SQL `SELECT` 문을 사용하여 테이블을 쿼리할 수 있는 **SQL analytics endpoint**가 자동으로 생성됩니다.
@@ -93,28 +94,35 @@ Lakehouse를 만들고 그 안에 테이블을 정의하면, SQL `SELECT` 문을
 **핸즈온의 의미**: 이 단계는 Lakehouse의 핵심 가치 중 하나인 '단일 데이터 복사본(One Copy of Data)'으로 다양한 작업을 수행할 수 있음을 보여줍니다. 파일로 업로드하고 테이블로 변환한 동일한 데이터를, 이번에는 친숙한 SQL을 사용하여 즉시 분석해봄으로써 데이터 전문가(SQL 분석가)와 데이터 엔지니어 모두에게 원활한 작업 환경을 제공한다는 점을 체험합니다.
 
 1.  Lakehouse 페이지의 오른쪽 상단에서 모드를 **Lakehouse**에서 **SQL analytics endpoint**로 전환합니다. 잠시 후 Lakehouse의 테이블을 쿼리할 수 있는 시각적 인터페이스가 열립니다.
+
 2.  **New SQL query** 버튼을 사용하여 새 쿼리 편집기를 열고 다음 SQL 쿼리를 입력합니다.
 
     ```sql
-   SELECT
-       Item,
-       SUM(Quantity * UnitPrice) AS Revenue
-   FROM
-       sales
-   GROUP BY
-       Item
-   ORDER BY
-       Revenue DESC;
+    SELECT
+        Item,
+        SUM(Quantity * UnitPrice) AS Revenue
+    FROM
+        sales
+    GROUP BY
+        Item
+    ORDER BY
+        Revenue DESC;
     ```
-    **코드 설명**: 이 SQL 쿼리는 `sales` 테이블에서 데이터를 가져옵니다.
-    - `SELECT Item, SUM(Quantity * UnitPrice) AS Revenue`: 제품(`Item`)별로 수량(`Quantity`)과 단가(`UnitPrice`)를 곱한 총 매출(`Revenue`)을 계산하여 선택합니다.
-    - `FROM sales`: `sales` 테이블에서 데이터를 가져옵니다.
-    - `GROUP BY Item`: 결과를 제품(`Item`)별로 그룹화합니다.
-    - `ORDER BY Revenue DESC`: 계산된 총 매출(`Revenue`)을 기준으로 내림차순으로 정렬합니다.
+    
+    **코드 설명**: 이 SQL 쿼리는 `sales` 테이블에서 각 제품별 총 매출을 계산하고, 매출이 높은 순서대로 정렬하여 보여줍니다.
+
+    *   `SELECT Item, SUM(Quantity * UnitPrice) AS Revenue`: 제품(`Item`)과, 수량(`Quantity`)과 단가(`UnitPrice`)를 곱한 값의 합계를 `Revenue`라는 이름의 열로 계산하여 선택합니다.
+    *   `FROM sales`: `sales` 테이블에서 데이터를 가져옵니다.
+    *   `GROUP BY Item`: 결과를 제품(`Item`)별로 묶어 집계(SUM)합니다.
+    *   `ORDER BY Revenue DESC`: 계산된 `Revenue`를 기준으로 내림차순(가장 큰 값이 먼저 오도록)으로 결과를 정렬합니다.
 
 3.  **&#9655; Run** 버튼을 사용하여 쿼리를 실행하고 결과를 확인합니다. 각 제품별 총 매출이 표시되어야 합니다.
 
     ![SQL 쿼리와 결과 스크린샷](./Images/sql-query.png)
+
+---
+
+
 
 ## 시각적 쿼리 만들기
 
