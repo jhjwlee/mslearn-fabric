@@ -185,14 +185,44 @@ Fabric에서 데이터 작업을 시작하기 전에 Fabric 평가판이 활성�
 3.  데이터를 집계하면 시각화 및 분석이 더 용이해질 수 있습니다. 새 코드 셀에 다음 코드를 입력하여 성별에 따른 평균 혈압 및 BMI를 막대 차트로 비교합니다.
 
     ```python
-    # ... (코드 생략) ...
+    import matplotlib.pyplot as plt
+    import seaborn as sns
+    
+    # Calculate average BP and BMI by SEX
+    avg_values = df.groupby('SEX')[['BP', 'BMI']].mean()
+    
+    # Bar chart of the average BP and BMI by SEX
+    ax = avg_values.plot(kind='bar', figsize=(15, 6), edgecolor='black')
+    
+    # Add title and labels
+    plt.title('Avg. Blood Pressure and BMI by Gender')
+    plt.xlabel('Gender')
+    plt.ylabel('Average')
+    
+    # Display actual numbers on the bar chart
+    for p in ax.patches:
+       ax.annotate(format(p.get_height(), '.2f'), 
+                   (p.get_x() + p.get_width() / 2., p.get_height()), 
+                   ha = 'center', va = 'center', 
+                   xytext = (0, 10), 
+                   textcoords = 'offset points')
+    
+    plt.show()
     ```
     **결과 분석**: 이 그래프는 여성 환자의 평균 혈압이 남성 환자에 비해 더 높다는 것을 보여줍니다. 또한 평균 체질량 지수(BMI)도 여성이 남성보다 약간 더 높다는 것을 보여줍니다.
 
 4.  새 코드 셀에 다음 코드를 입력하여 나이에 따른 BMI의 변화를 선 그래프로 확인합니다.
 
     ```python
-    # ... (코드 생략) ...
+    import matplotlib.pyplot as plt
+    import seaborn as sns
+    
+    plt.figure(figsize=(10, 6))
+    sns.lineplot(x='AGE', y='BMI', data=df, errorbar=None)
+    plt.title('BMI over Age')
+    plt.xlabel('Age')
+    plt.ylabel('BMI')
+    plt.show()
     ```
     **결과 분석**: 19세에서 30세 연령 그룹이 가장 낮은 평균 BMI 값을 가지며, 가장 높은 평균 BMI는 65세에서 79세 연령 그룹에서 발견됩니다.
 
