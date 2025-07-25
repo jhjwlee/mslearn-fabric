@@ -40,16 +40,19 @@ Fabric에서 데이터 작업을 시작하기 전에 Fabric 평가판이 활성�
 1.  새 코드 셀을 추가하고 다음 코드를 입력하여 데이터 세트를 로드합니다.
 
     ```python
-    # Azure storage access info for open dataset
-    blob_account_name = "azureopendatastorage"
-    blob_container_name = "ojsales-simulatedcontainer"
-    blob_relative_path = "oj_sales_data"
-    blob_sas_token = r"" # Blank since container is Anonymous access
+   # Azure storage access info for open dataset diabetes
+   blob_account_name = "azureopendatastorage"
+   blob_container_name = "ojsales-simulatedcontainer"
+   blob_relative_path = "oj_sales_data"
+   blob_sas_token = r"" # Blank since container is Anonymous access
     
-    # ... (Spark config code) ...
+   # Set Spark config to access  blob storage
+   wasbs_path = f"wasbs://%s@%s.blob.core.windows.net/%s" % (blob_container_name, blob_account_name, blob_relative_path)
+   spark.conf.set("fs.azure.sas.%s.%s.blob.core.windows.net" % (blob_container_name, blob_account_name), blob_sas_token)
+   print("Remote blob path: " + wasbs_path)
     
-    # Spark reads csv
-    df = spark.read.csv(wasbs_path, header=True)
+   # Spark reads csv
+   df = spark.read.csv(wasbs_path, header=True)
     ```
 
 2.  셀을 실행합니다.
