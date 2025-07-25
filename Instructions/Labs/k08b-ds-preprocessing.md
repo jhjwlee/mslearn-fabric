@@ -39,7 +39,7 @@ Fabric에서 데이터 작업을 시작하기 전에 Fabric 평가판이 활성�
 
 1.  새 코드 셀을 추가하고 다음 코드를 입력하여 데이터 세트를 로드합니다.
 
-    ```python
+   ```python
    # Azure storage access info for open dataset diabetes
    blob_account_name = "azureopendatastorage"
    blob_container_name = "ojsales-simulatedcontainer"
@@ -53,7 +53,7 @@ Fabric에서 데이터 작업을 시작하기 전에 Fabric 평가판이 활성�
     
    # Spark reads csv
    df = spark.read.csv(wasbs_path, header=True)
-    ```
+   ```
 
 2.  셀을 실행합니다.
 3.  새 코드 셀을 추가하고 다음 코드를 실행하여 Spark 데이터프레임을 Pandas 데이터프레임으로 변환하고, 데이터 타입을 정리합니다.
